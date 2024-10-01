@@ -12,8 +12,9 @@
 		CE75F25E2C8B14D4001AD0A3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE75F25D2C8B14D4001AD0A3 /* Preview Assets.xcassets */; };
 		FA98A0712CAAB0570088EE67 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA98A0702CAAB0570088EE67 /* ChartView.swift */; };
 		FAC26E542CAC021E004F686E /* ChartEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC26E512CAC021E004F686E /* ChartEntry.swift */; };
-		FAC26E552CAC021E004F686E /* Error.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC26E522CAC021E004F686E /* Error.swift */; };
 		FAC26E602CAC0C23004F686E /* charts.json in Resources */ = {isa = PBXBuildFile; fileRef = FAC26E5F2CAC0C23004F686E /* charts.json */; };
+		FAC26E622CAC2DC5004F686E /* Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC26E612CAC2DC5004F686E /* Enum.swift */; };
+		FAC26E642CAC4EF7004F686E /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC26E632CAC4EF7004F686E /* SearchView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,8 +24,9 @@
 		CE75F25D2C8B14D4001AD0A3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		FA98A0702CAAB0570088EE67 /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
 		FAC26E512CAC021E004F686E /* ChartEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartEntry.swift; sourceTree = "<group>"; };
-		FAC26E522CAC021E004F686E /* Error.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Error.swift; sourceTree = "<group>"; };
 		FAC26E5F2CAC0C23004F686E /* charts.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = charts.json; sourceTree = "<group>"; };
+		FAC26E612CAC2DC5004F686E /* Enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enum.swift; sourceTree = "<group>"; };
+		FAC26E632CAC4EF7004F686E /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -59,8 +61,9 @@
 			children = (
 				CE75F2562C8B14D3001AD0A3 /* Music_PlayerApp.swift */,
 				FA98A0702CAAB0570088EE67 /* ChartView.swift */,
+				FAC26E632CAC4EF7004F686E /* SearchView.swift */,
+				FAC26E612CAC2DC5004F686E /* Enum.swift */,
 				FAC26E512CAC021E004F686E /* ChartEntry.swift */,
-				FAC26E522CAC021E004F686E /* Error.swift */,
 				CE75F25A2C8B14D4001AD0A3 /* Assets.xcassets */,
 				CE75F25C2C8B14D4001AD0A3 /* Preview Content */,
 				FAC26E5F2CAC0C23004F686E /* charts.json */,
@@ -147,9 +150,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FAC26E642CAC4EF7004F686E /* SearchView.swift in Sources */,
 				CE75F2572C8B14D3001AD0A3 /* Music_PlayerApp.swift in Sources */,
 				FAC26E542CAC021E004F686E /* ChartEntry.swift in Sources */,
-				FAC26E552CAC021E004F686E /* Error.swift in Sources */,
+				FAC26E622CAC2DC5004F686E /* Enum.swift in Sources */,
 				FA98A0712CAAB0570088EE67 /* ChartView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
