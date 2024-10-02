@@ -8,31 +8,26 @@ import SwiftUI
 import SwiftData
 
 struct ChartView: View {
-    
-    @State private var songsResult: [Result] = []
     @State private var titleResult: String = ""
     @State private var pickLanguage: Languages = .Germany
-    @State private var textSearch: String = ""
     @State private var pickCharts: Charts = .Top10
-    
+    @State private var songsResult: [Result] = []
+    @State private var textSearch: String = ""
+    @State private var textFrameWidth = 260.0
     
     var body: some View {
-        
-        let textFrameWidth = 260.0
-        
         VStack {
             HStack {
                 VStack(alignment:.leading) {
                     Text("Charts Top 50").font(.title).bold()
                     Text(titleResult).font(.title3)
-                    
                     Picker("Charts", selection: $pickCharts) {
                         ForEach(Charts.allCases) { chart in
                             Text(chart.rawValue).tag(chart)
                                 .onChange(of: pickCharts) {
                                     Task {
                                         do {
-                                            try await self.DataAndJsonDecoder()
+                                            try await DataAndJsonDecoder()
                                         } catch {
                                             print("Data can not load \(error)")
                                         }
@@ -71,7 +66,6 @@ struct ChartView: View {
                 .clipShape(RoundedRectangle(cornerRadius: 5))
                 .padding(.horizontal, 10)
             
-            
             HStack {
                 Text("QuickSearch:").padding(15).font(.callout)
                 TextField("Search", text: $textSearch)
@@ -79,51 +73,7 @@ struct ChartView: View {
                     .padding(.horizontal, 10)
             }
             
-            
-            
-            
-            
-            List(songsResult.filter { song in textSearch.isEmpty || song.name!.lowercased().contains(textSearch.lowercased()) }, id:\.id) { song in
-                
-                
-                HStack{
-                    
-                    AsyncImage(url: URL(string: song.artworkUrl100 ?? "cat")) { image in
-                        image
-                            .resizable()
-                            .frame(width: 60, height: 60)
-                            .clipShape(.rect(cornerRadius: 8))
-                        
-                    } placeholder: {
-                        ProgressView()
-                    }
-                    
-                    VStack(alignment: .leading) {
-                        
-                        
-                        Text(song.artistName ?? "no artist")
-                            .frame(width: textFrameWidth, alignment: .leading)
-                            .font(.title3)
-                            .foregroundStyle(.black)
-                            .bold()
-                        
-                        
-                        Text(song.name ?? "no name")
-                            .frame(width: textFrameWidth, alignment: .leading)
-                            .font(.callout)
-                            .foregroundStyle(.black)
-                        
-                        Text("Datum: \(song.releaseDate ?? "")")
-                            .frame(width: textFrameWidth, alignment: .leading)
-                            .font(.footnote)
-                            .foregroundStyle(.black)
-                        
-                    }.padding(10)
-                }
-                .padding(2)
-                
-            }.listStyle(.plain)
-            
+            ChartViewList(songsResult: songsResult, textSearch: textSearch)
             
         }
         .onAppear() {
@@ -137,8 +87,7 @@ struct ChartView: View {
         }
     }
     
-    
-    private func DataAndJsonDecoder() async throws {
+    func DataAndJsonDecoder() async throws {
         
         // Daten entgegennehmen
         guard let path = URL(string: pickLanguage.description + pickCharts.description) else {

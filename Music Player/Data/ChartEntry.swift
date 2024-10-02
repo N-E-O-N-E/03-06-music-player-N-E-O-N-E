@@ -51,3 +51,6 @@ struct Genre: Codable {
     let url: String?
 
 }
+
+
+let testResult: [Result] = [.init(id: "01", artistName: "ABC", name: "ABC", releaseDate: "ABC", artistId: "", artistUrl: "", contentAdvisoryRating: "", artworkUrl100: "https://is1-ssl.mzstatic.com/image/thumb/Music211/v4/69/21/cf/6921cff3-7074-118a-ece2-4012450e6c75/093624839811.jpg/100x100bb.jpg", genres: [.init(genreId: "", name: "", url: "")], url: "")]

@@ -3,19 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 56;
+	objectVersion = 70;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		CE75F2572C8B14D3001AD0A3 /* Music_PlayerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE75F2562C8B14D3001AD0A3 /* Music_PlayerApp.swift */; };
 		CE75F25B2C8B14D4001AD0A3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE75F25A2C8B14D4001AD0A3 /* Assets.xcassets */; };
 		CE75F25E2C8B14D4001AD0A3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE75F25D2C8B14D4001AD0A3 /* Preview Assets.xcassets */; };
-		FA87C6AD2CAD81F200716534 /* SearchEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA87C6AC2CAD81F200716534 /* SearchEntry.swift */; };
-		FA98A0712CAAB0570088EE67 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA98A0702CAAB0570088EE67 /* ChartView.swift */; };
-		FAC26E542CAC021E004F686E /* ChartEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC26E512CAC021E004F686E /* ChartEntry.swift */; };
-		FAC26E602CAC0C23004F686E /* charts.json in Resources */ = {isa = PBXBuildFile; fileRef = FAC26E5F2CAC0C23004F686E /* charts.json */; };
-		FAC26E622CAC2DC5004F686E /* Enum.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC26E612CAC2DC5004F686E /* Enum.swift */; };
-		FAC26E642CAC4EF7004F686E /* SearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC26E632CAC4EF7004F686E /* SearchView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,13 +17,12 @@
 		CE75F2562C8B14D3001AD0A3 /* Music_PlayerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Music_PlayerApp.swift; sourceTree = "<group>"; };
 		CE75F25A2C8B14D4001AD0A3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CE75F25D2C8B14D4001AD0A3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
-		FA87C6AC2CAD81F200716534 /* SearchEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchEntry.swift; sourceTree = "<group>"; };
-		FA98A0702CAAB0570088EE67 /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
-		FAC26E512CAC021E004F686E /* ChartEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartEntry.swift; sourceTree = "<group>"; };
-		FAC26E5F2CAC0C23004F686E /* charts.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = charts.json; sourceTree = "<group>"; };
-		FAC26E612CAC2DC5004F686E /* Enum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enum.swift; sourceTree = "<group>"; };
-		FAC26E632CAC4EF7004F686E /* SearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		FA87C6AE2CAD8EFB00716534 /* Data */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = Data; sourceTree = "<group>"; };
+		FA87C6AF2CAD8F1200716534 /* View */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = View; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		CE75F2502C8B14D3001AD0A3 /* Frameworks */ = {
@@ -62,14 +55,10 @@
 			isa = PBXGroup;
 			children = (
 				CE75F2562C8B14D3001AD0A3 /* Music_PlayerApp.swift */,
-				FA98A0702CAAB0570088EE67 /* ChartView.swift */,
-				FAC26E632CAC4EF7004F686E /* SearchView.swift */,
-				FAC26E612CAC2DC5004F686E /* Enum.swift */,
-				FA87C6AC2CAD81F200716534 /* SearchEntry.swift */,
-				FAC26E512CAC021E004F686E /* ChartEntry.swift */,
+				FA87C6AF2CAD8F1200716534 /* View */,
+				FA87C6AE2CAD8EFB00716534 /* Data */,
 				CE75F25A2C8B14D4001AD0A3 /* Assets.xcassets */,
 				CE75F25C2C8B14D4001AD0A3 /* Preview Content */,
-				FAC26E5F2CAC0C23004F686E /* charts.json */,
 			);
 			path = "Music Player";
 			sourceTree = "<group>";
@@ -96,6 +85,10 @@
 			buildRules = (
 			);
 			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				FA87C6AE2CAD8EFB00716534 /* Data */,
+				FA87C6AF2CAD8F1200716534 /* View */,
 			);
 			name = "Music Player";
 			productName = "Music Player";
@@ -142,7 +135,6 @@
 			files = (
 				CE75F25E2C8B14D4001AD0A3 /* Preview Assets.xcassets in Resources */,
 				CE75F25B2C8B14D4001AD0A3 /* Assets.xcassets in Resources */,
-				FAC26E602CAC0C23004F686E /* charts.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -153,12 +145,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FA87C6AD2CAD81F200716534 /* SearchEntry.swift in Sources */,
-				FAC26E642CAC4EF7004F686E /* SearchView.swift in Sources */,
 				CE75F2572C8B14D3001AD0A3 /* Music_PlayerApp.swift in Sources */,
-				FAC26E542CAC021E004F686E /* ChartEntry.swift in Sources */,
-				FAC26E622CAC2DC5004F686E /* Enum.swift in Sources */,
-				FA98A0712CAAB0570088EE67 /* ChartView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
