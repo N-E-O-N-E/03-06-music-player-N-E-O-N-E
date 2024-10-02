@@ -52,70 +52,79 @@ struct ChartView: View {
             }.padding(.horizontal, 10)
             
             
-                Picker("Language:", selection: $pickLanguage) {
-                    ForEach(Languages.allCases) { lang in
-                        Text(lang.rawValue).tag(lang)
-                            .onChange(of: pickLanguage) {
-                                Task {
-                                    do {
-                                        try await self.DataAndJsonDecoder()
-                                    } catch {
-                                        print("Data can not load \(error)")
-                                    }
+            Picker("Language:", selection: $pickLanguage) {
+                ForEach(Languages.allCases) { lang in
+                    Text(lang.rawValue).tag(lang)
+                        .onChange(of: pickLanguage) {
+                            Task {
+                                do {
+                                    try await self.DataAndJsonDecoder()
+                                } catch {
+                                    print("Data can not load \(error)")
                                 }
                             }
+                        }
+                }
+                
+            }.pickerStyle(.segmented)
+                .background(Color(hue: 0.3, saturation: 0.5, brightness: 0.9))
+                .clipShape(RoundedRectangle(cornerRadius: 5))
+                .padding(.horizontal, 10)
+            
+            
+            HStack {
+                Text("QuickSearch:").padding(15).font(.callout)
+                TextField("Search", text: $textSearch)
+                    .textFieldStyle(.roundedBorder)
+                    .padding(.horizontal, 10)
+            }
+            
+            
+            
+            
+            
+            List(songsResult.filter { song in textSearch.isEmpty || song.name!.lowercased().contains(textSearch.lowercased()) }, id:\.id) { song in
+                
+                
+                HStack{
+                    
+                    AsyncImage(url: URL(string: song.artworkUrl100 ?? "cat")) { image in
+                        image
+                            .resizable()
+                            .frame(width: 60, height: 60)
+                            .clipShape(.rect(cornerRadius: 8))
+                        
+                    } placeholder: {
+                        ProgressView()
                     }
                     
-                }.pickerStyle(.segmented)
-                    .background(Color(hue: 0.3, saturation: 0.5, brightness: 0.9))
-                    .clipShape(RoundedRectangle(cornerRadius: 5))
-                    .padding(.horizontal, 10)
-            
-            
-            TextField("Search", text: $textSearch)
-                .textFieldStyle(.roundedBorder)
-                .padding(.horizontal, 10)
-                
-            VStack {
-                    List(songsResult, id:\.id) { song in
+                    VStack(alignment: .leading) {
                         
-                        NavigationLink(destination: ChartView()) {
-                            HStack{
-                                
-                                AsyncImage(url: URL(string: song.artworkUrl100 ?? "cat")) { image in
-                                    image
-                                        .resizable()
-                                        .frame(width: 60, height: 60)
-                                        .clipShape(.rect(cornerRadius: 8))
-                                    
-                                } placeholder: {
-                                    ProgressView()
-                                }
-                                
-                                VStack(alignment: .leading) {
-                                    
-                                    
-                                    Text(song.artistName ?? "no artist")
-                                        .frame(width: textFrameWidth, alignment: .leading)
-                                        .font(.title3)
-                                        .foregroundStyle(.black)
-                                        .bold()
-                                    
-                                    
-                                    Text(song.name ?? "no name")
-                                        .frame(width: textFrameWidth, alignment: .leading)
-                                        .font(.callout)
-                                        .foregroundStyle(.black)
-                                    
-                                }.padding(10)
-                            }
-                            .padding(2)
-                        }
-                    }
+                        
+                        Text(song.artistName ?? "no artist")
+                            .frame(width: textFrameWidth, alignment: .leading)
+                            .font(.title3)
+                            .foregroundStyle(.black)
+                            .bold()
+                        
+                        
+                        Text(song.name ?? "no name")
+                            .frame(width: textFrameWidth, alignment: .leading)
+                            .font(.callout)
+                            .foregroundStyle(.black)
+                        
+                        Text("Datum: \(song.releaseDate ?? "")")
+                            .frame(width: textFrameWidth, alignment: .leading)
+                            .font(.footnote)
+                            .foregroundStyle(.black)
+                        
+                    }.padding(10)
+                }
+                .padding(2)
                 
-            }
-            .listStyle(.plain)
-            Spacer()
+            }.listStyle(.plain)
+            
+            
         }
         .onAppear() {
             Task {

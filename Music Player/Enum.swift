@@ -22,11 +22,6 @@ enum Errors: Error {
     }
 }
 
-
-
-
-
-
 enum Languages: String, CustomStringConvertible, CaseIterable, Identifiable {
     
     case Germany

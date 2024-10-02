@@ -10,6 +10,7 @@
 		CE75F2572C8B14D3001AD0A3 /* Music_PlayerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE75F2562C8B14D3001AD0A3 /* Music_PlayerApp.swift */; };
 		CE75F25B2C8B14D4001AD0A3 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE75F25A2C8B14D4001AD0A3 /* Assets.xcassets */; };
 		CE75F25E2C8B14D4001AD0A3 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE75F25D2C8B14D4001AD0A3 /* Preview Assets.xcassets */; };
+		FA87C6AD2CAD81F200716534 /* SearchEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA87C6AC2CAD81F200716534 /* SearchEntry.swift */; };
 		FA98A0712CAAB0570088EE67 /* ChartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA98A0702CAAB0570088EE67 /* ChartView.swift */; };
 		FAC26E542CAC021E004F686E /* ChartEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = FAC26E512CAC021E004F686E /* ChartEntry.swift */; };
 		FAC26E602CAC0C23004F686E /* charts.json in Resources */ = {isa = PBXBuildFile; fileRef = FAC26E5F2CAC0C23004F686E /* charts.json */; };
@@ -22,6 +23,7 @@
 		CE75F2562C8B14D3001AD0A3 /* Music_PlayerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Music_PlayerApp.swift; sourceTree = "<group>"; };
 		CE75F25A2C8B14D4001AD0A3 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CE75F25D2C8B14D4001AD0A3 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		FA87C6AC2CAD81F200716534 /* SearchEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchEntry.swift; sourceTree = "<group>"; };
 		FA98A0702CAAB0570088EE67 /* ChartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartView.swift; sourceTree = "<group>"; };
 		FAC26E512CAC021E004F686E /* ChartEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartEntry.swift; sourceTree = "<group>"; };
 		FAC26E5F2CAC0C23004F686E /* charts.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = charts.json; sourceTree = "<group>"; };
@@ -63,6 +65,7 @@
 				FA98A0702CAAB0570088EE67 /* ChartView.swift */,
 				FAC26E632CAC4EF7004F686E /* SearchView.swift */,
 				FAC26E612CAC2DC5004F686E /* Enum.swift */,
+				FA87C6AC2CAD81F200716534 /* SearchEntry.swift */,
 				FAC26E512CAC021E004F686E /* ChartEntry.swift */,
 				CE75F25A2C8B14D4001AD0A3 /* Assets.xcassets */,
 				CE75F25C2C8B14D4001AD0A3 /* Preview Content */,
@@ -150,6 +153,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FA87C6AD2CAD81F200716534 /* SearchEntry.swift in Sources */,
 				FAC26E642CAC4EF7004F686E /* SearchView.swift in Sources */,
 				CE75F2572C8B14D3001AD0A3 /* Music_PlayerApp.swift in Sources */,
 				FAC26E542CAC021E004F686E /* ChartEntry.swift in Sources */,
