@@ -7,21 +7,20 @@ struct Music_PlayerApp: App {
             
             
             TabView {
+                
                 NavigationStack {
                     ChartView()
                 }
-                    .tabItem {
-                        Label("Charts", systemImage: "music.note.list")
-                            .tint(.blue)
-                    }
+                .tabItem {
+                    Label("Charts", systemImage: "music.note.list")
+                }
                 
                 NavigationStack {
                     SearchView()
                 }
-                    .tabItem {
-                        Label("Search", systemImage: "magnifyingglass")
-                    }
-                
+                .tabItem {
+                    Label("Search", systemImage: "magnifyingglass")
+                }
             }
         }
     }

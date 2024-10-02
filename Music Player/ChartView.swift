@@ -10,43 +10,48 @@ import SwiftData
 struct ChartView: View {
     
     @State private var songsResult: [Result] = []
-    @State private var pickLanguage: Languages = .Deutschland
+    @State private var pickLanguage: Languages = .Germany
     
     var body: some View {
         let textFrameWidth = 270.0
         VStack {
             
-        Image("cat")
-            .resizable()
-            .scaledToFit()
-            .opacity(0.9)
-            .padding(0)
-        
-        HStack(alignment:.center) {
-            Picker("Language:", selection: $pickLanguage) {
-                ForEach(Languages.allCases) { lang in
-                    Text(lang.rawValue).tag(lang)
-                        .onChange(of: pickLanguage) {
-                            DataAndJsonDecoder()
-                        }
-                }
+            Image("cat")
+                .resizable()
+                .scaledToFit()
+                .opacity(0.9)
+                .padding(0)
+            
+            HStack(alignment:.center) {
+                Picker("Language:", selection: $pickLanguage) {
+                    ForEach(Languages.allCases) { lang in
+                        Text(lang.rawValue).tag(lang)
+                            .onChange(of: pickLanguage) {
+                                Task {
+                                    do {
+                                        try await self.DataAndJsonDecoder()
+                                    } catch {
+                                        print("Data can not load \(error)")
+                                    }
+                                }
+                            }
+                    }
+                    
+                }.pickerStyle(.segmented)
+                    .background(Color(hue: 0.9, saturation: 0.6, brightness: 0.9))
+                    .clipShape(RoundedRectangle(cornerRadius: 5))
+                    .padding(.horizontal, 10)
                 
-            }.pickerStyle(.segmented)
-                .background(Color(hue: 0.9, saturation: 0.6, brightness: 0.9))
-                .clipShape(RoundedRectangle(cornerRadius: 5))
-                .padding(.horizontal, 10)
+                
+                
+            }
             
-            
-            
-        }
-        
-        VStack {
-            List {
-                ForEach(songsResult, id: \.id) { song in
+            VStack {
+                List(songsResult, id:\.id) { song in
                     NavigationLink(destination: ChartView()) {
                         HStack{
                             
-                            AsyncImage(url: URL(string: song.artworkUrl100)) { image in
+                            AsyncImage(url: URL(string: song.artworkUrl100 ?? "cat")) { image in
                                 image
                                     .resizable()
                                     .frame(width: 60, height: 60)
@@ -60,14 +65,14 @@ struct ChartView: View {
                             VStack(alignment: .leading) {
                                 
                                 
-                                Text(song.artistName)
+                                Text(song.artistName ?? "no artist")
                                     .frame(width: textFrameWidth, alignment: .leading)
                                     .font(.title3)
                                     .foregroundStyle(.black)
                                     .bold()
                                 
                                 
-                                Text(song.name)
+                                Text(song.name ?? "no name")
                                     .frame(width: textFrameWidth, alignment: .leading)
                                     .font(.callout)
                                     .foregroundStyle(.black)
@@ -81,48 +86,31 @@ struct ChartView: View {
             .listStyle(.plain)
             Spacer()
         }
-        .task {
-            DataAndJsonDecoder()
+        .onAppear() {
+            Task {
+                do {
+                    try await self.DataAndJsonDecoder()
+                } catch {
+                    print("Data can not load \(error)")
+                }
+            }
         }
-        }.frame(width: 390)
-}
-
-    private func DataAndJsonDecoder() {
+    }
+    
+    
+    private func DataAndJsonDecoder() async throws {
         
         
         guard let path = URL(string: pickLanguage.description) else {
-            print(Errors.invalidURL)
-            return
+            throw Errors.invalidURL
         }
         
-        URLSession.shared.dataTask(with: path) { data, _, error in
-            
-            if let error = error {
-                print(Errors.invalidURL, error)
-                return
-            }
-            
-            guard let data = data else {
-                print(Errors.invalidData)
-                return
-            }
-            
-            do {
-                
-                let songs = try JSONDecoder().decode(Response.self, from: data)
-                print("Data found")
-                
-                self.songsResult = songs.feed.results
-                
-                
-            } catch {
-                print(Errors.invalidData)
-                return
-            }
-        }.resume()
+        let (data, _) = try await URLSession.shared.data(from: path)
+        
+        let songs = try JSONDecoder().decode(Response.self, from: data)
+        self.songsResult = songs.feed!.results
         
     }
-    
 }
 
 #Preview {

@@ -3,7 +3,7 @@ import Foundation
 import SwiftUI
 
 struct Response: Codable {
-    let feed: Feed
+    let feed: Feed?
 }
 
 struct Feed: Codable {
@@ -34,19 +34,19 @@ struct Link: Codable {
 }
 
 struct Result: Codable {
-    let artistName, id, name: String
+    let artistName, id, name: String?
     let releaseDate: String?
-    let artistId: String
-    let artistUrl: String
+    let artistId: String?
+    let artistUrl: String?
     let contentAdvisoryRating: String?
-    let artworkUrl100: String
-    let genres: [Genre]
-    let url: String
+    let artworkUrl100: String?
+    let genres: [Genre]?
+    let url: String?
     
 }
 
 struct Genre: Codable {
-    let genreId, name: String
-    let url: String
+    let genreId, name: String?
+    let url: String?
 
 }
