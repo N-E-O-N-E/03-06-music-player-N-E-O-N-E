@@ -34,9 +34,10 @@ struct Link: Codable {
 }
 
 struct Result: Codable {
-    let artistName, id, name: String?
+    let id: String
+    let artistName, name: String?
     let releaseDate: String?
-    let artistId: String?
+    let artistId: String
     let artistUrl: String?
     let contentAdvisoryRating: String?
     let artworkUrl100: String?

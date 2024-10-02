@@ -2,24 +2,19 @@ import SwiftUI
 
 @main
 struct Music_PlayerApp: App {
+    
     var body: some Scene {
         WindowGroup {
             
             
             TabView {
                 
-                NavigationStack {
+                Tab("Charts", systemImage: "music.note.list") {
                     ChartView()
                 }
-                .tabItem {
-                    Label("Charts", systemImage: "music.note.list")
-                }
                 
-                NavigationStack {
+                Tab("Search", systemImage: "magnifyingglass") {
                     SearchView()
-                }
-                .tabItem {
-                    Label("Search", systemImage: "magnifyingglass")
                 }
             }
         }
