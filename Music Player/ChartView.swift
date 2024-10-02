@@ -10,8 +10,10 @@ import SwiftData
 struct ChartView: View {
     
     @State private var songsResult: [Result] = []
+    @State private var titleResult: String = ""
     @State private var pickLanguage: Languages = .Germany
     @State private var textSearch: String = ""
+    @State private var pickCharts: Charts = .Top10
     
     
     var body: some View {
@@ -20,7 +22,25 @@ struct ChartView: View {
         
         VStack {
             HStack {
-                Text("Charts Top 50").font(.largeTitle).bold()
+                VStack(alignment:.leading) {
+                    Text("Charts Top 50").font(.title).bold()
+                    Text(titleResult).font(.title3)
+                    
+                    Picker("Charts", selection: $pickCharts) {
+                        ForEach(Charts.allCases) { chart in
+                            Text(chart.rawValue).tag(chart)
+                                .onChange(of: pickCharts) {
+                                    Task {
+                                        do {
+                                            try await self.DataAndJsonDecoder()
+                                        } catch {
+                                            print("Data can not load \(error)")
+                                        }
+                                    }
+                                }
+                        }
+                    }
+                }
                 Spacer()
                 Image("cat")
                     .resizable()
@@ -47,7 +67,7 @@ struct ChartView: View {
                     }
                     
                 }.pickerStyle(.segmented)
-                    .background(Color(hue: 0.9, saturation: 0.6, brightness: 0.9))
+                    .background(Color(hue: 0.3, saturation: 0.5, brightness: 0.9))
                     .clipShape(RoundedRectangle(cornerRadius: 5))
                     .padding(.horizontal, 10)
             
@@ -57,13 +77,7 @@ struct ChartView: View {
                 .padding(.horizontal, 10)
                 
             VStack {
-                
-               
-                    
-                    
                     List(songsResult, id:\.id) { song in
-                        
-                        
                         
                         NavigationLink(destination: ChartView()) {
                             HStack{
@@ -77,7 +91,6 @@ struct ChartView: View {
                                 } placeholder: {
                                     ProgressView()
                                 }
-                                
                                 
                                 VStack(alignment: .leading) {
                                     
@@ -119,7 +132,7 @@ struct ChartView: View {
     private func DataAndJsonDecoder() async throws {
         
         // Daten entgegennehmen
-        guard let path = URL(string: pickLanguage.description) else {
+        guard let path = URL(string: pickLanguage.description + pickCharts.description) else {
             throw Errors.invalidURL
         }
         
@@ -128,7 +141,9 @@ struct ChartView: View {
         
         // Daten umwandeln (decodieren)
         let songs = try JSONDecoder().decode(Response.self, from: data)
+        
         self.songsResult = songs.feed!.results
+        self.titleResult = songs.feed!.title
         
     }
 }
