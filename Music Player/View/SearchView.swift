@@ -41,24 +41,6 @@ struct SearchView: View {
         }
         Spacer()
     }
-    
-    
-    private func DataAndJsonDecoder() async throws {
-        
-        // Daten entgegennehmen
-        guard let path = URL(string: "https://itunes.apple.com/search?term=SongName&media=music&limit=200") else {
-            throw Errors.invalidURL
-        }
-        
-        // Daten auslesen
-        let (data, _) = try await URLSession.shared.data(from: path)
-        
-        // Daten umwandeln (decodieren)
-        let songs = try JSONDecoder().decode(SearchResponse.self, from: data)
-        
-        //self.searchResult = songs.result!
-        
-    }
 }
 
 #Preview {

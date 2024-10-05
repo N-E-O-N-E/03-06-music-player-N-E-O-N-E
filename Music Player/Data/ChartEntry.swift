@@ -33,7 +33,7 @@ struct Link: Codable {
 
 }
 
-struct Result: Codable {
+struct Result: Codable, Identifiable {
     let id: String
     let artistName, name: String?
     let releaseDate: String?
@@ -47,7 +47,8 @@ struct Result: Codable {
 }
 
 struct Genre: Codable {
-    let genreId, name: String?
+    var genreId: String?
+    let name: String?
     let url: String?
 
 }

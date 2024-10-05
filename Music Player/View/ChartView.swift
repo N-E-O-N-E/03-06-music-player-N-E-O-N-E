@@ -30,9 +30,9 @@ struct ChartView: View {
      
             HStack {
                 VStack(alignment:.leading) {
-                    Text("Charts Top 50").font(.title).bold().foregroundStyle(.white).shadow(color: .white, radius: 10)
+                    Text("Charts Top 50").font(.title).bold().foregroundStyle(.white).shadow(color: .purple, radius: 10)
                     Text(titleResult).font(.title3).foregroundStyle(.white)
-                        .shadow(color: .white, radius: 10)
+                        .shadow(color: .purple, radius: 10)
                         .padding(0)
                     
                 }
@@ -62,7 +62,7 @@ struct ChartView: View {
                 .padding(.horizontal, 10)
             
             HStack {
-                Text("QuickSearch:").padding(10).font(.callout).foregroundStyle(.white).shadow(color: .white, radius: 10)
+                Text("QuickSearch:").padding(10).font(.callout).foregroundStyle(.white).shadow(color: .purple, radius: 10)
                 TextField("Search", text: $textSearch)
                     .textFieldStyle(.roundedBorder)
                     .padding(.horizontal, 10)
