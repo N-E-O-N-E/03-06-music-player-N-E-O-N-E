@@ -37,11 +37,11 @@ struct SearchView: View {
                             .padding(.horizontal, 10)
                         
                         Button {
+                            searchResult.removeAll()
+                            newSearchString = textSearchInput.replacingOccurrences(of: " ", with: "+").lowercased()
+                            link = "https://itunes.apple.com/search?term=\(newSearchString)&entity=song&limit=50"
                             Task {
                                 do {
-                                    newSearchString = textSearchInput.replacingOccurrences(of: " ", with: "+").lowercased()
-                                    link = "https://itunes.apple.com/search?term=\(newSearchString)&entity=song&country=DE"
-                                    searchResult.removeAll()
                                     try await searchITunes(link: link)
                                 } catch {
                                     print(Errors.invalidData, error)

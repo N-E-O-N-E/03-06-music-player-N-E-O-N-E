@@ -49,8 +49,12 @@ struct SearchViewListDetail: View {
                 Spacer()
             }
             Spacer()
-           
-            Link(destination: URL(string: selectedSong.trackViewUrl)!) {
+            
+            Button(action: {
+                if let url = URL(string: selectedSong.trackViewUrl ?? "https://www.apple.com/music/") {
+                    UIApplication.shared.open(url)
+                }
+            }) {
                 Image("applemusicBadge")
                     .resizable()
                     .frame(width: 150, height: 50)

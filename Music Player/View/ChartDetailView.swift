@@ -91,8 +91,20 @@ struct ChartDetailView: View {
                 }
                 .padding(.horizontal, 30)
             }
+            
+            Spacer()
+            
+            Button(action: {
+                if let url = URL(string: song.url ?? "https://www.apple.com/music/") {
+                    UIApplication.shared.open(url)
+                }
+            }) {
+                Image("applemusicBadge")
+                    .resizable()
+                    .frame(width: 150, height: 50)
+                    .scaledToFill()
+            }
         }
-        Spacer()
     }
 }
 
