@@ -9,31 +9,26 @@ import SwiftUI
 
 struct SearchViewList: View {
     
-    var searchResult: [SearchResult] = []
+   var searchResult: [SearchResult] = []
     
     var body: some View {
         
         List(searchResult, id:\.artistId) { song in
-            
+            NavigationLink(destination: SearchViewListDetail(selectedSong: song.self)) {
+                
             HStack(alignment:.center) {
                 VStack(alignment: .leading) {
-                    Text(song.trackName).font(.title2).bold()
-                    Text(song.artistName).font(.subheadline).foregroundStyle(.black)
-                    Text("")
-                    Text(song.releaseDate ?? "date not found").font(.footnote).foregroundStyle(.gray)
-                    Text(song.collectionExplicitness.rawValue).font(.footnote).foregroundStyle(.orange)
-                    Text("Genre: \(song.primaryGenreName)").font(.footnote).foregroundStyle(.black)
-                    Text("")
                     
-                    Button("Link") {
-                        
-                    }
+                    Text(song.trackName).font(.title3).bold()
+                    Text(song.artistName).font(.subheadline).foregroundStyle(.black)
+                    Text(song.releaseDate ?? "date not found").font(.footnote).foregroundStyle(.gray)
+                    Text("Genre: \(song.primaryGenreName)").font(.footnote).foregroundStyle(.black)
                     
                 }.padding(10)
                 
                 Spacer()
                 
-                AsyncImage(url: URL(string: song.artworkUrl100)) { image in
+                AsyncImage(url: URL(string: song.artworkUrl100 ?? "cat")) { image in
                     
                     ZStack {
                         Rectangle()
@@ -60,12 +55,9 @@ struct SearchViewList: View {
                     ProgressView()
                 }
             }
-            
+        }
         }.listStyle(.plain).foregroundStyle(Color(uiColor: .purple))
+            .progressViewStyle(.linear)
         
     }
-}
-
-#Preview {
-    SearchViewList()
 }
