@@ -29,7 +29,7 @@ struct ChartViewList: View {
                             
                             Text(song.artistName ?? "artist  not found").font(.title3).bold()
                             Text(song.name ?? "title not found").font(.subheadline).foregroundStyle(.black)
-                            Text(song.releaseDate ?? "date  not found").font(.footnote).foregroundStyle(.gray)
+                            //Text(song.releaseDate ?? "date  not found").font(.footnote).foregroundStyle(.gray)
                             Text(song.contentAdvisoryRating ?? "").font(.footnote).foregroundStyle(.orange)
                             
                         }.padding(10)

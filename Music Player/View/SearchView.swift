@@ -8,38 +8,53 @@
 import SwiftUI
 
 struct SearchView: View {
-    @State private var textSearch: String = ""
+    @State private var textSearchInput: String = ""
     @State private var searchResult: [SearchResult] = []
-    
     
     var body: some View {
         
         VStack(alignment:.leading) {
-            Text("Charts Top 50").font(.title).bold()
+            Text("Search Songs").font(.title).bold()
                 .padding()
             
             HStack {
-                TextField("Search", text: $textSearch)
+                TextField("Search", text: $textSearchInput)
                     .textFieldStyle(.roundedBorder)
                     .padding(.horizontal, 10)
                 
                 Button("Suche") {
+                    Task {
+                        do {
+                            try await searchITunes(search: textSearchInput)
+                        } catch {
+                            print(Errors.invalidData, error)
+                        }
+                        textSearchInput = ""
+                        textSearchInput = ""
+                    }
                     
                 }.padding(15)
-                
             }
-            
-            List(searchResult, id:\.trackID) { search in
-                VStack(alignment: .leading) {
-                    Text(search.trackName ?? "unknown")
-                        .frame(width: 260, alignment: .leading)
-                        .font(.title3)
-                        .foregroundStyle(.black)
-                        .bold()
-                }.padding(10)
-            }
+            SearchViewList(searchResult: searchResult)
         }
         Spacer()
+    }
+    func searchITunes(search: String) async throws {
+        
+        let newSearch = search.replacingOccurrences(of: " ", with: "+")
+        
+        // daten holen
+        guard let url = URL(string: "https://itunes.apple.com/search?term=\(newSearch)&entity=song") else {
+            throw Errors.invalidURL
+        }
+        
+        // daten umwandeln
+        let (data, _) = try await URLSession.shared.data(from: url)
+        
+        //daten decodieren
+        let result = try JSONDecoder().decode(SearchResponse.self, from: data)
+        self.searchResult.removeAll()
+        self.searchResult = result.results
     }
 }
 
