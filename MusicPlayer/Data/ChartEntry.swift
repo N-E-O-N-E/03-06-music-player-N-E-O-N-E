@@ -42,7 +42,7 @@ struct Result: Codable, Identifiable {
     let contentAdvisoryRating: String?
     let artworkUrl100: String?
     let genres: [Genre]?
-    let url: String?
+    let url: String
     
 }
 

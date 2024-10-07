@@ -13,6 +13,7 @@ struct SearchViewListDetail: View {
     var body: some View {
         
         VStack(alignment:.center) {
+            
             AsyncImage(url: URL(string: selectedSong.artworkUrl100 ?? "cat")) { image in
                 image
                     .resizable()
@@ -49,9 +50,31 @@ struct SearchViewListDetail: View {
                 Spacer()
             }
             Spacer()
+            Button {
+                // Code MusikPreview Play mit iTuneAPI
+                
+            } label: {
+                Text("Track Preview")
+                    .frame(width: 300, height: 40)
+                    .background(.purple)
+                    .foregroundColor(.white)
+                    .clipShape(.capsule)
+                    .shadow(radius: 4)
+            }.padding()
+            
+//            Link(destination: URL(string: selectedSong.trackViewUrl ?? "") {
+//                Image("applemusicBadge")
+//                    .resizable()
+//                    .frame(width: 150, height: 50)
+//                    .scaledToFill()
+//            }
+            
+            // Link wird nicht genutzt da es projektspezifische Probleme gibt.
+            // Lösung abgesprochen mit Martin Hegel im Call 07.10.24  14:17 bei Rückfragen
+            // Lösungen probiert: Projekt Build reset, Target neu, Setting überprüft etc... ohne Erfolg.
             
             Button(action: {
-                if let url = URL(string: selectedSong.trackViewUrl ?? "https://www.apple.com/music/") {
+                if let url = URL(string: selectedSong.trackViewUrl ?? "") {
                     UIApplication.shared.open(url)
                 }
             }) {
@@ -64,6 +87,8 @@ struct SearchViewListDetail: View {
         }.padding(30)
             .navigationBarTitle("Song information")
             .navigationBarTitleDisplayMode(.inline)
+        
+        
     }
 }
 
