@@ -53,26 +53,24 @@ struct SearchViewListDetail: View {
             Spacer()
             
             HStack {
-                Button("Play") {
+                
+                Button {
                     playSound.playSound(sound: selectedSong.previewUrl!)
-                }.buttonStyle(.borderedProminent)
-                Button("Stop") {
+                } label: {
+                    Image(systemName: "play.circle.fill")
+                        .scaleEffect(4)
+                        .padding(40)
+                }
+                
+                Button {
                     playSound.stopSound()
-                    
-                }.buttonStyle(.borderedProminent)
-                .padding(10)
-            }
-
-//                        Link(destination: URL(string: selectedSong.trackViewUrl ?? "") {
-//                            Image("applemusicBadge")
-//                                .resizable()
-//                                .frame(width: 150, height: 50)
-//                                .scaledToFill()
-//                        }
-            
-            // Link wird nicht genutzt da es projektspezifische Probleme gibt.
-            // Lösung abgesprochen mit Martin Hegel im Call 07.10.24  14:17 bei Rückfragen
-            // Lösungen probiert: Projekt Build reset, Target neu, Setting überprüft etc... ohne Erfolg.
+                } label: {
+                    Image(systemName: "stop.circle.fill")
+                        .scaleEffect(4)
+                        .padding(40)
+                }
+                
+            }.padding(50)
             
             Button(action: {
                 if let url = URL(string: selectedSong.trackViewUrl ?? "") {
@@ -85,12 +83,12 @@ struct SearchViewListDetail: View {
                     .scaledToFill()
             }
             
+            
         }.padding(20)
             .navigationBarTitle("Song information")
             .navigationBarTitleDisplayMode(.inline)
         
     }
-    
 }
 
 #Preview {
