@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import AVFoundation
 
 struct SearchViewListDetail: View {
     var selectedSong: SearchResult
@@ -51,7 +52,7 @@ struct SearchViewListDetail: View {
             }
             Spacer()
             Button {
-                // Code MusikPreview Play mit iTuneAPI
+                print(selectedSong.trackViewUrl!)
                 
             } label: {
                 Text("Track Preview")
@@ -62,12 +63,12 @@ struct SearchViewListDetail: View {
                     .shadow(radius: 4)
             }.padding()
             
-//            Link(destination: URL(string: selectedSong.trackViewUrl ?? "") {
-//                Image("applemusicBadge")
-//                    .resizable()
-//                    .frame(width: 150, height: 50)
-//                    .scaledToFill()
-//            }
+            //            Link(destination: URL(string: selectedSong.trackViewUrl ?? "") {
+            //                Image("applemusicBadge")
+            //                    .resizable()
+            //                    .frame(width: 150, height: 50)
+            //                    .scaledToFill()
+            //            }
             
             // Link wird nicht genutzt da es projektspezifische Probleme gibt.
             // Lösung abgesprochen mit Martin Hegel im Call 07.10.24  14:17 bei Rückfragen
@@ -87,7 +88,6 @@ struct SearchViewListDetail: View {
         }.padding(30)
             .navigationBarTitle("Song information")
             .navigationBarTitleDisplayMode(.inline)
-        
         
     }
 }

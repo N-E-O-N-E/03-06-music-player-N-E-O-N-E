@@ -34,7 +34,6 @@ struct ChartView: View {
                     Text(titleResult).font(.title3).foregroundStyle(.white)
                         .shadow(color: .purple, radius: 10)
                         .padding(0)
-                    
                 }
                 Spacer()
             }
