@@ -6,10 +6,10 @@
 //
 
 import SwiftUI
-import AVFoundation
 
 struct SearchViewListDetail: View {
     let selectedSong: SearchResult
+    var playSound = SoundManager()
     
     var body: some View {
         
@@ -52,13 +52,23 @@ struct SearchViewListDetail: View {
             }
             Spacer()
             
-            
-            //            Link(destination: URL(string: selectedSong.trackViewUrl ?? "") {
-            //                Image("applemusicBadge")
-            //                    .resizable()
-            //                    .frame(width: 150, height: 50)
-            //                    .scaledToFill()
-            //            }
+            HStack {
+                Button("Play") {
+                    playSound.playSound(sound: selectedSong.previewUrl!)
+                }.buttonStyle(.borderedProminent)
+                Button("Stop") {
+                    playSound.stopSound()
+                    
+                }.buttonStyle(.borderedProminent)
+                .padding(10)
+            }
+
+//                        Link(destination: URL(string: selectedSong.trackViewUrl ?? "") {
+//                            Image("applemusicBadge")
+//                                .resizable()
+//                                .frame(width: 150, height: 50)
+//                                .scaledToFill()
+//                        }
             
             // Link wird nicht genutzt da es projektspezifische Probleme gibt.
             // Lösung abgesprochen mit Martin Hegel im Call 07.10.24  14:17 bei Rückfragen
@@ -75,7 +85,7 @@ struct SearchViewListDetail: View {
                     .scaledToFill()
             }
             
-        }.padding(30)
+        }.padding(20)
             .navigationBarTitle("Song information")
             .navigationBarTitleDisplayMode(.inline)
         
@@ -84,6 +94,6 @@ struct SearchViewListDetail: View {
 }
 
 #Preview {
-    let testSong: SearchResult = .init(artistId: 01, trackId: 01, artistName: "ArtistName", trackName: "TrackName", trackViewUrl: "URL", artworkUrl30: "cat", artworkUrl60: "cat", artworkUrl100: "cat", releaseDate: "ReleaseDate", country: .deu, primaryGenreName: "Genre", contentAdvisoryRating: .explicit)
+    let testSong: SearchResult = .init(artistId: 01, trackId: 01, artistName: "ArtistName", trackName: "TrackName", trackViewUrl: "URL", previewUrl: "", artworkUrl30: "cat", artworkUrl60: "cat", artworkUrl100: "cat", releaseDate: "ReleaseDate", country: .deu, primaryGenreName: "Genre", contentAdvisoryRating: .explicit)
     SearchViewListDetail(selectedSong: testSong)
 }

@@ -19,6 +19,7 @@ struct SearchResult: Codable {
     let artistName: String
     let trackName: String
     let trackViewUrl: String?
+    let previewUrl: String?
     let artworkUrl30: String?
     let artworkUrl60: String?
     let artworkUrl100: String?
@@ -34,6 +35,7 @@ struct SearchResult: Codable {
         case artistName = "artistName"
         case trackName = "trackName"
         case trackViewUrl = "trackViewUrl"
+        case previewUrl = "previewUrl"
         case artworkUrl30 = "artworkUrl30"
         case artworkUrl60 = "artworkUrl60"
         case artworkUrl100 = "artworkUrl100"
