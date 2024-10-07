@@ -14,7 +14,7 @@ struct SearchViewList: View {
     var body: some View {
         
         List(searchResult, id:\.artistId) { song in
-            NavigationLink(destination: SearchViewListDetail(selectedSong: song.self)) {
+            NavigationLink(destination: SearchViewListDetail(selectedSong: song)) {
                 
             HStack(alignment:.center) {
                 VStack(alignment: .leading) {

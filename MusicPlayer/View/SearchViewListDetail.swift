@@ -9,7 +9,7 @@ import SwiftUI
 import AVFoundation
 
 struct SearchViewListDetail: View {
-    var selectedSong: SearchResult
+    let selectedSong: SearchResult
     
     var body: some View {
         
@@ -51,17 +51,7 @@ struct SearchViewListDetail: View {
                 Spacer()
             }
             Spacer()
-            Button {
-                print(selectedSong.trackViewUrl!)
-                
-            } label: {
-                Text("Track Preview")
-                    .frame(width: 300, height: 40)
-                    .background(.purple)
-                    .foregroundColor(.white)
-                    .clipShape(.capsule)
-                    .shadow(radius: 4)
-            }.padding()
+            
             
             //            Link(destination: URL(string: selectedSong.trackViewUrl ?? "") {
             //                Image("applemusicBadge")
@@ -90,6 +80,7 @@ struct SearchViewListDetail: View {
             .navigationBarTitleDisplayMode(.inline)
         
     }
+    
 }
 
 #Preview {

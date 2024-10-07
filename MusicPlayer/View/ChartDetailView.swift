@@ -93,19 +93,6 @@ struct ChartDetailView: View {
             
             Spacer()
             
-            Button {
-                
-                // Code - Charts - API Song Preview
-                
-            } label: {
-                Text("Track Preview")
-                    .frame(width: 300, height: 40)
-                    .background(.purple)
-                    .foregroundColor(.white)
-                    .clipShape(.capsule)
-                    .shadow(radius: 4)
-            }.padding()
-            
             Button(action: {
                 if let url = URL(string: song.url) {
                     UIApplication.shared.open(url)
